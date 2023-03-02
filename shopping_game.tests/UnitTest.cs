@@ -298,5 +298,58 @@ namespace shopping_game.tests
             // Asssert
             Assert.AreEqual(1649.97m, total);
         }
+
+        /// <summary>
+        /// SKUs Scanned: atv, atv, atv, atv, atv, atv
+        /// Total expected: $438
+        /// </summary>
+        [TestMethod]
+        public void Scenario7()
+        {
+            // Arrange
+            var products = new List<Product>
+            {
+                new Product
+                {
+                    SKU = "atv",
+                    Price = 109.50m
+                },
+                new Product
+                {
+                    SKU = "atv",
+                    Price = 109.50m
+                },
+                new Product
+                {
+                    SKU = "atv",
+                    Price = 109.50m
+                },
+                new Product
+                {
+                    SKU = "atv",
+                    Price = 109.50m
+                },
+                new Product
+                {
+                    SKU = "atv",
+                    Price = 109.50m
+                },
+                new Product
+                {
+                    SKU = "atv",
+                    Price = 109.50m
+                },
+            };
+
+            // Act
+            Checkout checkout = new(rules);
+
+            products.ForEach(product => checkout.Scan(product));
+
+            var total = checkout.Total();
+
+            // Asssert
+            Assert.AreEqual(438m, total);
+        }
     }
 }
